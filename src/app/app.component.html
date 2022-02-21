@@ -1,0 +1,64 @@
+<div class="container">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="https://cdn.logo.com/hotlink-ok/logo-social.png" alt="" width="30" height="24"
+          class="d-inline-block align-text-top">
+        <div class="mr-5-d d-inline">Beer</div>
+      </a>
+    </div>
+  </nav>
+
+  <div class="p-5 mt-2">
+    <div class="row">
+      <div class="col-6 col-md-4" *ngFor="let item of row | paginate: config">
+        <div class="card mb-3 d-flex justify-content-end fix-h-350" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="OpenModalForm(item)">
+          <div class="text-center pt-3">
+            <img src="{{item.image_url}}" class="img-design-card" alt="...">
+          </div>
+            <div class="card-body text-center">
+              <h2>{{item.name}}</h2>
+            </div>
+         
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mt-5">
+        <pagination-controls (pageChange)="pageChange($event)" class="my-pagination" previousLabel="Previous"
+          nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+          screenReaderCurrentLabel="You're on page">
+
+        </pagination-controls>
+
+      </div>
+
+    </div>
+
+    <!-- *ngIf="open && " -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-body" *ngIf="open">
+            <div class="text-end pr-3 pt-0">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="row">
+              <div class="col-6 col-md-3 d-flex justify-content-center">
+                <img src="{{dataSelect?.image_url}}" class="img-design" alt="...">
+
+              </div>
+              <div class="col-6 col-md-9">
+                <h3>{{dataSelect?.name}}</h3>
+                <p>{{dataSelect?.description}}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>
